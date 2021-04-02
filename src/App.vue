@@ -1,31 +1,49 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <navigation />
     </div>
     <router-view />
+
+    <footer class="bg-dark">
+      <div class="container">
+        <p>
+          © A copyright notice is a short line of text that lets the public know
+          that your work is protected by copyright law and is not to be copied.
+        </p>
+      </div>
+    </footer>
   </div>
 </template>
 
+<script>
+import Navigation from "./components/navigation";
+
+export default {
+  components: {
+    Navigation,
+  },
+};
+</script>
+
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-}
 
-#nav {
-  padding: 30px;
+  footer {
+    margin-top: 2rem;
+    color: #fff;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    p {
+      font-size: 12px;
+      line-height: normal;
+      max-width: 50%;
+      margin: 0 auto;
+      padding: 20px 0;
     }
   }
 }
