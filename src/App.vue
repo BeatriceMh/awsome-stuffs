@@ -1,9 +1,21 @@
 <template>
   <div id="app">
     <div id="nav">
-      <navigation />
+      <nav class="navbar navbar-dark bg-dark">
+        <img
+          alt="Vue logo"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1184px-Vue.js_Logo_2.svg.png"
+        />
+        <b-navbar type="dark" variant="dark">
+          <b-navbar-nav>
+            <router-link to="/">Home</router-link>
+            <router-link to="/about">About</router-link>
+            <router-link to="/login">Login</router-link>
+          </b-navbar-nav>
+        </b-navbar>
+      </nav>
     </div>
-    <router-view />
+    <router-view @authenticated="setAuthenticated" />
 
     <footer class="bg-dark">
       <div class="container">
@@ -17,11 +29,24 @@
 </template>
 
 <script>
-import Navigation from "./components/navigation";
-
 export default {
-  components: {
-    Navigation,
+  data() {
+    return {
+      authenticated: false,
+    };
+  },
+  mounted() {
+    if (!this.authenticated) {
+      this.$router.replace({ name: "login" });
+    }
+  },
+  methods: {
+    setAuthenticated(status) {
+      this.authenticated = status;
+    },
+    logout() {
+      this.authenticated = false;
+    },
   },
 };
 </script>
@@ -45,6 +70,25 @@ export default {
       margin: 0 auto;
       padding: 20px 0;
     }
+  }
+}
+
+.navbar-nav {
+  a {
+    color: #42b983;
+    padding: 0 15px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+nav {
+  img {
+    max-width: 60px;
   }
 }
 </style>
